@@ -11,7 +11,14 @@ public class FollowPlayer : MonoBehaviour
         {
             Vector3 direction = (player.position - transform.position).normalized;
 
+            // quick fix, prevent enemy sinking
+            direction.y = 0;
+            
+        
             transform.position += direction * speed * Time.deltaTime;
+            
+
+
         }
     }
 }

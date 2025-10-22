@@ -13,6 +13,8 @@ public class EnemyDetection : MonoBehaviour
         Far
     }
 
+    public float offset;
+
     public float range;
     public TextMeshProUGUI rangeText;
     public Color color;
@@ -20,7 +22,13 @@ public class EnemyDetection : MonoBehaviour
     public RangeDetectionStage stage;
     [Range(0, 100)] public float distance;  // 0: Close , 100: Far
 
-
+    private void OnCollisionStay(Collision collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            stage = RangeDetectionStage.Close;
+        }
+    }
     private void Awake()
     {
         stage = RangeDetectionStage.Close;
@@ -45,8 +53,13 @@ public class EnemyDetection : MonoBehaviour
         // Determine where the player is 
         RaycastHit hitInfo;
 
-        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * range, Color.gold);
-        Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hitInfo, range);
+        Vector3 raycastOffset = new Vector3(transform.position.x, transform.position.y - offset, transform.position.z);
+
+        Vector3 currPos = transform.position;
+        currPos.y -= offset;
+
+        Debug.DrawRay(raycastOffset, transform.TransformDirection(Vector3.forward) * range, Color.gold);
+        Physics.Raycast(currPos, transform.TransformDirection(Vector3.forward), out hitInfo, range);
 
         if(hitInfo.collider != null)
         {
