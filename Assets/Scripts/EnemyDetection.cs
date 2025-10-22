@@ -20,7 +20,13 @@ public class EnemyDetection : MonoBehaviour
     public RangeDetectionStage stage;
     [Range(0, 100)] public float distance;  // 0: Close , 100: Far
 
-
+    private void OnCollisionStay(Collision collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            stage = RangeDetectionStage.Close;
+        }
+    }
     private void Awake()
     {
         stage = RangeDetectionStage.Close;

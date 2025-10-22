@@ -5,15 +5,15 @@ public class EnemyBehaviour : MonoBehaviour
 {
     public TextMeshProUGUI endText;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if(other.gameObject.name == "Player")
+        if(collision.gameObject.tag == "Player")
         {
             endText.gameObject.SetActive(true);
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnCollisionExit(Collision collision)
     {
         endText.gameObject.SetActive(false);
     }
