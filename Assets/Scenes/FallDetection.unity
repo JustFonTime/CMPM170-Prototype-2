@@ -5374,6 +5374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 167489d0c1dd7824d9ce014dd401f6fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDetection
+  offset: 1
   range: 45
   rangeText: {fileID: 973713778}
   color: {r: 1, g: 0, b: 0, a: 0}
