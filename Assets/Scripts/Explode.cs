@@ -18,6 +18,8 @@ public class HorizontalCountdown : MonoBehaviour
     public GameObject explosionPrefab;
     public bool reloadSceneOnExplode = true;
     public float restartDelay = 1f;
+    public AudioClip explosionSFX;
+    public float explosionVolume;
 
     [Header("Enemy contact (instant explode)")]
     public bool useEnemyTag = true;
@@ -109,6 +111,12 @@ public class HorizontalCountdown : MonoBehaviour
 #if UNITY_2019_3_OR_NEWER
             var vfx = fx.GetComponentInChildren<VisualEffect>(); if (vfx) vfx.Play();
 #endif
+        }
+
+        // SFX
+        if (explosionSFX)
+        {
+            AudioSource.PlayClipAtPoint(explosionSFX, this.transform.position, explosionVolume);
         }
 
         // Disable gameplay components you dragged in
